@@ -3,18 +3,30 @@
  */
 package com.store.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.store.article.Article;
 import com.store.persistence.IArticlePersistence;
 
 /**
  * @author Mariell Macheal Rudolph
  *
  */
-
+@RestController
+@RequestMapping("articles")
 public class ArticleController {
 
 	
 	@Autowired
 	IArticlePersistence articlePersistence;
+	
+	@GetMapping
+	public List<Article> getAllArticle(){
+		return articlePersistence.findAll();
+	}
 }
