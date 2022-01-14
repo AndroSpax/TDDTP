@@ -1,5 +1,9 @@
 package com.store.persistence;
 
-public interface IArticlePersistence {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.store.article.Article;
+
+public interface IArticlePersistence extends JpaRepository<Article, Long>{
 
 }

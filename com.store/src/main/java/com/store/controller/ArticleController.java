@@ -3,6 +3,10 @@
  */
 package com.store.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.store.persistence.IArticlePersistence;
+
 /**
  * @author Mariell Macheal Rudolph
  *
@@ -10,4 +14,7 @@ package com.store.controller;
 
 public class ArticleController {
 
+	
+	@Autowired
+	IArticlePersistence articlePersistence;
 }
