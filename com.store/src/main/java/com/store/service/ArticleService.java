@@ -1,4 +1,4 @@
-package com.store.controller;
+package com.store.service;
 
 public class ArticleService {
 
