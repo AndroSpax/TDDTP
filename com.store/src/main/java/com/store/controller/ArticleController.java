@@ -34,7 +34,9 @@ public class ArticleController {
 	
 	@GetMapping
 	public List<Article> getAllArticle(){
-		return articlePersistence.findAll();
+		List<Article> list = articlePersistence.findAll(); //todo to simplify as :return articlePersistence.findAll();
+		list.forEach(System.out::println);
+		return list;
 	}
 	
 	@GetMapping("/{id}")
