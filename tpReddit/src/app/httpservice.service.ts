@@ -13,14 +13,14 @@ export class HttpserviceService {
   constructor(private client:HttpClient) { }
 
   addArticle(strTitle: string, strLink: string){
-    this.client.post<Article>('http://localhost:3000/articles/', {title: strTitle, link: strLink, votes : 10}).subscribe()
+    this.client.post<Article>('http://localhost:8080/articles/', {title: strTitle, link: strLink, votes : 10}).subscribe()
   }
   getArticles():Observable<Article[]>{
-    return this.client.get<Article[]>('http://localhost:3000/articles/')
+    return this.client.get<Article[]>('http://localhost:8080/articles/')
   }
 
   deleteArticle(id :number){
-    console.log('http://localhost:3000/articles/' + id );
-    this.client.delete('http://localhost:3000/articles/' + id).subscribe();
+    console.log('http://localhost:8080/articles/' + id );
+    this.client.delete('http://localhost:8080/articles/' + id).subscribe();
   }
 }
