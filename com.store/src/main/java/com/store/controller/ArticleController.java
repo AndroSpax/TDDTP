@@ -23,7 +23,7 @@ import com.store.persistence.IArticlePersistence;
  * @author Marielle Macheal Rudolph
  *
  */
-@CrossOrigin(origins = "", maxAge = 3600) //todo : remettre http://localhost:4200
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600) //todo : remettre http://localhost:4200
 @RestController
 @RequestMapping("articles")
 public class ArticleController {
@@ -42,8 +42,7 @@ public class ArticleController {
         Article article=articlePersistence.findById(id).get();
         System.out.println(article);
     }
-	
-	
+
 	@PostMapping
 	public void addArticle(@RequestBody Article article) {
 		articlePersistence.save(article);
