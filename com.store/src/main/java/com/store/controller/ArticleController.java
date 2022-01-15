@@ -23,7 +23,7 @@ import com.store.persistence.IArticlePersistence;
  * @author Marielle Macheal Rudolph
  *
  */
-@CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
+@CrossOrigin(origins = "", maxAge = 3600) //todo : remettre http://localhost:4200
 @RestController
 @RequestMapping("articles")
 public class ArticleController {
