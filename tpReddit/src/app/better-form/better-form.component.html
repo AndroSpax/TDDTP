@@ -1,0 +1,20 @@
+<h2>Demo Form : with validations (explicit)
+<div>
+  <h2>Demo Form: userName</h2>
+  <form [formGroup]="myForm"  (ngSubmit)="onSubmit(myForm.value)" [class.error]="myForm.valid && myForm.touched"> <!-- [ngSubmit]="onSubmit(myForm.value)" -->
+
+      <label for="user?mameInput">userName</label>
+      <input type="text" id="userNameInput" placeholder="userName please"
+      [formControl]="$any(userName)">
+
+      <div *ngIf="!userName.valid"> userName invalid </div>
+
+      <div *ngIf="userName.hasError('required')">userName is required</div>
+
+      <div *ngIf="!myForm.valid">Form is invalid</div>
+
+
+    <button type="submit" [disabled]="userName.invalid">Submit</button>
+
+  </form>
+</div>
