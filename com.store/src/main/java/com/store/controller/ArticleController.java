@@ -5,13 +5,13 @@ package com.store.controller;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,14 +38,30 @@ public class ArticleController {
 	}
 	
 	@GetMapping("/{id}")
-    public void findArticleById(@PathVariable("id") Long id) {
+    public Article findArticleById(@PathVariable("id") Long id) {
         Article article=articlePersistence.findById(id).get();
         System.out.println(article);
+        return article;
     }
 	
 	
 	@PostMapping
-	public void addArticle(@RequestBody Article article) {
-		articlePersistence.save(article);
+	public Article addArticle(@RequestBody Article article) {
+		return articlePersistence.save(article);
+	}
+	
+	@PutMapping(value = "/{id}")
+	public Article editArtticle(@PathVariable("id") Long id,@RequestBody Article article) {
+		//on récupère l'article avec son ID
+		Article articleSQL = this.findArticleById(id);
+		
+		//on le remplit avec les nouvelle données
+		articleSQL.setLink(article.getLink());
+		articleSQL.setTitle(article.getTitle());
+		articleSQL.setVotes(article.getVotes());		
+		
+		//on le persiste et le retourne
+		return articlePersistence.save(articleSQL);
+		
 	}
 }
