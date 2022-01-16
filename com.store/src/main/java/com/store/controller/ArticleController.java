@@ -6,6 +6,8 @@ package com.store.controller;
 import java.util.List;
 
 
+import com.store.service.ArticleService;
+import com.store.service.IArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,30 +18,31 @@ import com.store.persistence.IArticlePersistence;
  * @author Marielle Macheal Rudolph
  *
  */
+
 @CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 @RestController
 @RequestMapping("articles")
 public class ArticleController {
 
-	
 	@Autowired
-	IArticlePersistence articlePersistence;
+	ArticleService service;
+
+	@Autowired
+	IArticlePersistence articlePersistence; //todo : remove later
 	
 	@GetMapping
 	public List<Article> getAllArticle(){
-		return articlePersistence.findAll();
+		return service.getAllArticle();
 	}
 	
 	@GetMapping("/{id}")
     public Article findArticleById(@PathVariable("id") Long id) {
-        Article article=articlePersistence.findById(id).get();
-        System.out.println(article);
-        return article;
+        return service.findById(id);
     }
 
 	@PostMapping
 	public Article addArticle(@RequestBody Article article) {
-		return articlePersistence.save(article);
+		return service.addArticle(article);
 	}
 	
 	@PutMapping(value = "/{id}")
@@ -57,8 +60,7 @@ public class ArticleController {
 	}
 
 	@DeleteMapping(value = {"/{id}"})
-	public void deleteArticle(@PathVariable("id") Long id){
-		articlePersistence.deleteById(id);
+	public boolean deleteArticle(@PathVariable("id") Long id){
+		return service.delete(id);
 	}
-
 }
