@@ -27,9 +27,6 @@ public class ArticleController {
 	@Autowired
 	ArticleService service;
 
-	@Autowired
-	IArticlePersistence articlePersistence; //todo : remove later
-	
 	@GetMapping
 	public List<Article> getAllArticle(){
 		return service.getAllArticle();
@@ -47,16 +44,8 @@ public class ArticleController {
 	
 	@PutMapping(value = "/{id}")
 	public Article editArtticle(@PathVariable("id") Long id,@RequestBody Article article) {
-		//on récupère l'article avec son ID
-		Article articleSQL = this.findArticleById(id);
-		
-		//on le remplit avec les nouvelle données
-		articleSQL.setLink(article.getLink());
-		articleSQL.setTitle(article.getTitle());
-		articleSQL.setVotes(article.getVotes());		
-		
-		//on le persiste et le retourne
-		return articlePersistence.save(articleSQL);
+
+		return service.editArticle(id, article) ;
 	}
 
 	@DeleteMapping(value = {"/{id}"})
