@@ -16,11 +16,14 @@ export class HttpserviceService {
     this.client.post<Article>('http://localhost:8080/articles/', {title: strTitle, link: strLink, votes : 10}).subscribe()
   }
   getArticles():Observable<Article[]>{
-    return this.client.get<Article[]>('http://localhost:8080/articles/')
+   return this.client.get<Article[]>('http://localhost:8080/articles/')
   }
 
-  deleteArticle(id :number){
-    console.log('http://localhost:8080/articles/' + id );
-    this.client.delete('http://localhost:8080/articles/' + id).subscribe();
+  deleteArticle(id:number){
+    this.client.delete<Article>(`http://localhost:8080/articles/${id}`).subscribe();
+  }
+
+  updateArticle(article:Article){
+
   }
 }

@@ -1,24 +1,33 @@
 <fieldset>
-<h3>article {{article.title}}</h3>
-<p>Votes {{article.votes}} </p>
-<p>Link {{article.link}}</p>
-<p>ID= {{article.id}}</p>
+  <div class="article">
+    <h3>{{article.title}}</h3>
+    <p>Votes : {{article.votes}} </p>
+    <p>Link : {{article.link}}</p>
 
-<p><button (click)="voteUp()" >vote up</button></p>
-<p><button (click)="voteDown()" >vote down</button></p>
-<p><button (click)="deleteArticle(article.id)" >delete</button></p>
-<p><button (click)="edit()" >edit</button></p>
-<p></p>
+    <div class="inline-p">
+      <p>
+        <button (click)="voteUp()">vote up</button>
+      </p>
+      <p>
+        <button (click)="voteDown()">vote down</button>
+      </p>
+      <p>
+        <button (click)="deleteArticle(article.id)">delete</button>
+      </p>
+      <p>
+        <button (click)="edit()">edit</button>
+      </p>
+    </div>
+  </div>
 
-<form>
-	<div *ngIf="updateOn">
-		<h3>Update</h3>
-		<label for="title">Title:</label> <input name="title" #upTitle
-			[value]="article.title"> <label for="link">Link:</label>
-		<input name="link" #upLink [value]="article.link">
-		<button (click)="updateArticle(upTitle, upLink, article.id)">Update</button>
-	</div>
+  <form>
+    <div *ngIf="updateOn">
+      <h3>Update</h3>
+      <label for="title">Title:</label> <input name="title" #upTitle [value]="article.title"> <label for="link">Link:</label>
+      <input name="link" #upLink [value]="article.link">
+      <button (click)="updateArticle(upTitle, upLink, article.id)">Update</button>
+    </div>
 
 
-</form>
+  </form>
 </fieldset>

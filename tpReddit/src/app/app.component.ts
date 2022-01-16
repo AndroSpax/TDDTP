@@ -15,10 +15,11 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.getArticles()
   }
-
   deleteArticle(id:number){
+    console.log("artile on the way to be fucked : " + id ) //todo : a virer
     this.service.deleteArticle(id);
     this.getArticles();
+    return false;
   }
 
   addArticle(title:HTMLInputElement, link:HTMLInputElement){
@@ -32,6 +33,8 @@ export class AppComponent implements OnInit{
   }
 
   getArticles() {
-    this.service.getArticles().subscribe( restArticles => this.articles= restArticles);
+    this.service.getArticles().subscribe( restArticles => {
+      this.articles= restArticles;
+    });
   }
 }
