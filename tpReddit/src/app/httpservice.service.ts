@@ -13,8 +13,10 @@ export class HttpserviceService {
   constructor(private client:HttpClient) { }
 
   addArticle(strTitle: string, strLink: string){
-    this.client.post<Article>('http://localhost:8080/articles/', {title: strTitle, link: strLink, votes : 10}).subscribe()
+    //créé l'article / recuperer dans le subcribe => l'id / le renvoyer.
+    this.client.post<Article>('http://localhost:8080/articles/', {title: strTitle, link: strLink, votes : 10}).subscribe();
   }
+
   getArticles():Observable<Article[]>{
    return this.client.get<Article[]>('http://localhost:8080/articles/')
   }

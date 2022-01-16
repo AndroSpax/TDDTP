@@ -24,8 +24,7 @@ export class AppComponent implements OnInit{
 
   addArticle(title:HTMLInputElement, link:HTMLInputElement){
     this.service.addArticle(title.value,link.value);
-    this.getArticles();
-    return false;
+
   }
 
   sortedArticles():Article[]{
