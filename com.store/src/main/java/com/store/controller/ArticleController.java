@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.store.controller;
 
 import java.util.List;
@@ -45,7 +42,6 @@ public class ArticleController {
 
 	@DeleteMapping(value = {"/{id}"})
 	public void deleteArticle(@PathVariable("id") Long id){
-		System.out.println("Article with id : " + id + " delete ");
 		articlePersistence.deleteById(id);
 	}
 }
